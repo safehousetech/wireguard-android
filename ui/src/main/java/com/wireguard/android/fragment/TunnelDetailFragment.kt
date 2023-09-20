@@ -135,6 +135,14 @@ class TunnelDetailFragment : BaseFragment(), MenuProvider {
                     peer.latestHandshakeLabel.visibility = View.VISIBLE
                     peer.latestHandshakeText.visibility = View.VISIBLE
                 }
+                if (peerStats == null || peerStats.blocked == 0L) {
+                    peer.blockedLabel.visibility = View.GONE
+                    peer.blockedText.visibility = View.GONE
+                } else {
+                    peer.blockedText.text = peerStats.blocked.toString()
+                    peer.blockedLabel.visibility = View.VISIBLE
+                    peer.blockedText.visibility = View.VISIBLE
+                }
             }
         } catch (e: Throwable) {
             for (i in 0 until binding.peersLayout.childCount) {
@@ -144,6 +152,8 @@ class TunnelDetailFragment : BaseFragment(), MenuProvider {
                 peer.transferText.visibility = View.GONE
                 peer.latestHandshakeLabel.visibility = View.GONE
                 peer.latestHandshakeText.visibility = View.GONE
+                peer.blockedLabel.visibility = View.GONE
+                peer.blockedText.visibility = View.GONE
             }
         }
     }
