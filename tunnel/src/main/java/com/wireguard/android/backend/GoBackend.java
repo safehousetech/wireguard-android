@@ -127,13 +127,15 @@ public final class GoBackend implements Backend {
         long rx = 0;
         long tx = 0;
         long latestHandshakeMSec = 0;
+        long blocked = 0;
         for (final String line : config.split("\\n")) {
             if (line.startsWith("public_key=")) {
                 if (key != null)
-                    stats.add(key, rx, tx, latestHandshakeMSec);
+                    stats.add(key, rx, tx, latestHandshakeMSec, blocked);
                 rx = 0;
                 tx = 0;
                 latestHandshakeMSec = 0;
+                blocked = 0;
                 try {
                     key = Key.fromHex(line.substring(11));
                 } catch (final KeyFormatException ignored) {
@@ -171,10 +173,18 @@ public final class GoBackend implements Backend {
                 } catch (final NumberFormatException ignored) {
                     latestHandshakeMSec = 0;
                 }
+            } else if (line.startsWith("blocked=")) {
+                if (key == null)
+                    continue;
+                try {
+                    blocked += Long.parseLong(line.substring(8));
+                } catch (final NumberFormatException ignored) {
+                    blocked = 0;
+                }
             }
         }
         if (key != null)
-            stats.add(key, rx, tx, latestHandshakeMSec);
+            stats.add(key, rx, tx, latestHandshakeMSec, blocked);
         return stats;
     }
 
