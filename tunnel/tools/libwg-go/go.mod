@@ -1,16 +1,16 @@
 module golang.zx2c4.com/wireguard/android
 
-go 1.20
+go 1.23.1
 
 replace golang.zx2c4.com/wireguard => github.com/safehousetech/wireguard-go v0.0.0-20231022095118-dc2f2188e1c4
 
 require (
-	golang.org/x/sys v0.13.0
-	golang.zx2c4.com/wireguard v0.0.0-20231022001213-2e0774f246fb
+	golang.org/x/sys v0.33.0
+	golang.zx2c4.com/wireguard v0.0.0-20250505131008-436f7fdc1670
 )
 
 require (
-	golang.org/x/crypto v0.14.0 // indirect
-	golang.org/x/net v0.17.0 // indirect
+	golang.org/x/crypto v0.37.0 // indirect
+	golang.org/x/net v0.39.0 // indirect
 	golang.zx2c4.com/wintun v0.0.0-20230126152724-0fa3db229ce2 // indirect
 )
