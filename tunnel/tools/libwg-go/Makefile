@@ -37,7 +37,7 @@ $(GRADLE_USER_HOME)/caches/golang/$(GO_TARBALL):
 	echo "$(GO_HASH_$(GO_PLATFORM))  $@.tmp" | sha256sum -c && \
 	mv "$@.tmp" "$@"'
 
-$(BUILDDIR)/go-$(GO_VERSION)/.prepared: $(GRADLE_USER_HOME)/caches/golang/$(GO_TARBALL)
+$(GO_ROOT)/.prepared: $(GRADLE_USER_HOME)/caches/golang/$(GO_TARBALL)
 	mkdir -p "$(dir $@)"
 	flock "$@.lock" -c ' \
 	[ -f "$@" ] && exit 0; \
@@ -45,8 +45,8 @@ $(BUILDDIR)/go-$(GO_VERSION)/.prepared: $(GRADLE_USER_HOME)/caches/golang/$(GO_T
 	patch -p1 -f -N -r- -d "$(dir $@)" < goruntime-boottime-over-monotonic.diff && \
 	touch "$@"'
 
-$(DESTDIR)/libwg-go.so: export PATH := $(BUILDDIR)/go-$(GO_VERSION)/bin/:$(PATH)
-$(DESTDIR)/libwg-go.so: $(BUILDDIR)/go-$(GO_VERSION)/.prepared go.mod
+$(DESTDIR)/libwg-go.so: export PATH := $(GO_ROOT)/bin/:$(PATH)
+$(DESTDIR)/libwg-go.so:  $(GO_ROOT)/.prepared go.mod
 	go build -tags linux -ldflags="-X golang.zx2c4.com/wireguard/ipc.socketDirectory=/data/data/$(ANDROID_PACKAGE_NAME)/cache/wireguard -buildid=" -v -trimpath -buildvcs=false -o "$@" -buildmode c-shared
 
 .DELETE_ON_ERROR:
