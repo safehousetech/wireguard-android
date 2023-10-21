@@ -91,10 +91,10 @@ public final class WgQuickBackend implements Backend {
         }
         for (final String line : output) {
             final String[] parts = line.split("\\t");
-            if (parts.length != 8)
+            if (parts.length != 9)
                 continue;
             try {
-                stats.add(Key.fromBase64(parts[0]), Long.parseLong(parts[5]), Long.parseLong(parts[6]), Long.parseLong(parts[4]) * 1000);
+                stats.add(Key.fromBase64(parts[0]), Long.parseLong(parts[5]), Long.parseLong(parts[6]), Long.parseLong(parts[4]) * 1000, 0);
             } catch (final Exception ignored) {
             }
         }

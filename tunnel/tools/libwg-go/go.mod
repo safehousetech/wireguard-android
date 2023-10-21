@@ -2,6 +2,8 @@ module golang.zx2c4.com/wireguard/android
 
 go 1.20
 
+replace golang.zx2c4.com/wireguard => github.com/safehousetech/wireguard-go v0.0.0-20231020210144-fed501a28624
+
 require (
 	golang.org/x/sys v0.13.0
 	golang.zx2c4.com/wireguard v0.0.0-20231021170638-f502ec3fad11
