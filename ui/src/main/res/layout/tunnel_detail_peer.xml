@@ -214,13 +214,41 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/latest_handshake_label"
                 android:contentDescription="@string/latest_handshake"
-                android:nextFocusUp="@id/transfer_text"
+                android:nextFocusUp="@id/blocked_text"
                 android:onClick="@{ClipboardUtils::copyTextView}"
                 android:textAppearance="?attr/textAppearanceBodyLarge"
                 android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/latest_handshake_label"
                 tools:text="4 minutes, 27 seconds ago"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/blocked_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/latest_handshake_text"
+                android:layout_marginTop="8dp"
+                android:labelFor="@+id/bocked_text"
+                android:text="@string/blocked"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/latest_handshake_text"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/blocked_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/blocked_label"
+                android:contentDescription="@string/latest_handshake"
+                android:nextFocusUp="@id/transfer_text"
+                android:onClick="@{ClipboardUtils::copyTextView}"
+                android:textAppearance="?attr/textAppearanceBodyLarge"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/blocked_label"
+                tools:text="999"
                 tools:visibility="visible" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
