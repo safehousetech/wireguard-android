@@ -142,6 +142,7 @@
     <string name="key_length_explanation_hex">: WireGuard hex keys must be 64 characters (32 bytes)</string>
     <string name="latest_handshake">Latest handshake</string>
     <string name="latest_handshake_ago">%s ago</string>
+    <string name="blocked">Blocked</string>
     <string name="listen_port">Listen port</string>
     <string name="log_export_error">Unable to export log: %s</string>
     <string name="log_export_subject">WireGuard Android Log File</string>
