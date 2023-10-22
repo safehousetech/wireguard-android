@@ -21,7 +21,7 @@ import androidx.annotation.Nullable;
  */
 @NonNullForAll
 public class Statistics {
-    public record PeerStats(long rxBytes, long txBytes, long latestHandshakeEpochMillis) { }
+    public record PeerStats(long rxBytes, long txBytes, long latestHandshakeEpochMillis, long blocked) { }
     private final Map<Key, PeerStats> stats = new HashMap<>();
     private long lastTouched = SystemClock.elapsedRealtime();
 
@@ -38,9 +38,11 @@ public class Statistics {
      *                          the provided {@link Key}. This value is in bytes.
      * @param latestHandshake   The timestamp of the latest handshake for the {@link com.wireguard.config.Peer}
      *                          referenced by the provided {@link Key}. The value is in epoch milliseconds.
+     * @param blocked           The counter of error dns responses {@link com.wireguard.config.Peer}
+     *                          referenced by the provided {@link Key}. The value is a counter.
      */
-    void add(final Key key, final long rxBytes, final long txBytes, final long latestHandshake) {
-        stats.put(key, new PeerStats(rxBytes, txBytes, latestHandshake));
+    void add(final Key key, final long rxBytes, final long txBytes, final long latestHandshake, final long blocked) {
+        stats.put(key, new PeerStats(rxBytes, txBytes, latestHandshake, blocked));
         lastTouched = SystemClock.elapsedRealtime();
     }
 
@@ -98,5 +100,18 @@ public class Statistics {
             tx += val.txBytes;
         }
         return tx;
+    }
+
+     /**
+     * Get the total blocked dns responses by all the peers being tracked by this instance
+     *
+     * @return a long representing the count.
+     */
+    public long totalBlocked() {
+        long bl = 0;
+        for (final PeerStats val : stats.values()) {
+            bl += val.blocked;
+        }
+        return bl;
     }
 }

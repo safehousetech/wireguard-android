@@ -112,11 +112,11 @@ publishing {
     }
     repositories {
         maven {
-            name = "sonatype"
-            url = uri("https://oss.sonatype.org/service/local/staging/deploy/maven2/")
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/safehousetech/wireguard-android")
             credentials {
-                username = providers.environmentVariable("SONATYPE_USER").orNull
-                password = providers.environmentVariable("SONATYPE_PASSWORD").orNull
+                username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
+                password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
             }
         }
     }
