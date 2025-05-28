@@ -55,6 +55,10 @@ class QuickTileService : TileService() {
     @SuppressLint("StartActivityAndCollapseDeprecated")
     override fun onClick() {
         applicationScope.launch {
+            if (tunnel == null) {
+                Application.getTunnelManager().getTunnels()
+                updateTile()
+            }
             when (val tunnel = tunnel) {
                 null -> {
                     Log.d(TAG, "No tunnel set, so launching main activity")
