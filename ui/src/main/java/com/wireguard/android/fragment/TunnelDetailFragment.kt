@@ -5,6 +5,7 @@
 package com.wireguard.android.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -110,6 +111,8 @@ class TunnelDetailFragment : BaseFragment(), MenuProvider {
         lastState = state
         try {
             val statistics = tunnel.getStatisticsAsync()
+
+            Log.e("pegasus ", "updateStats: totalBlocked.:  ${statistics.totalBlocked()}" )
             for (i in 0 until binding.peersLayout.childCount) {
                 val peer: TunnelDetailPeerBinding = DataBindingUtil.getBinding(binding.peersLayout.getChildAt(i))
                     ?: continue

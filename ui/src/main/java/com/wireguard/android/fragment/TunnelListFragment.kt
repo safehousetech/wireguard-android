@@ -171,7 +171,11 @@ class TunnelListFragment : BaseFragment() {
         super.onViewStateRestored(savedInstanceState)
         binding ?: return
         binding!!.fragment = this
-        lifecycleScope.launch { binding!!.tunnels = Application.getTunnelManager().getTunnels() }
+        lifecycleScope.launch {
+            val tunnel = Application.getTunnelManager().getTunnels()
+            Log.e(TAG, "onViewStateRestored: ${tunnel.size}")
+            println("$TAG  : tunnel ${tunnel.size}")
+            binding!!.tunnels = tunnel }
         binding!!.rowConfigurationHandler = object : RowConfigurationHandler<TunnelListItemBinding, ObservableTunnel> {
             override fun onConfigureRow(binding: TunnelListItemBinding, item: ObservableTunnel, position: Int) {
                 binding.fragment = this@TunnelListFragment

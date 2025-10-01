@@ -6,6 +6,7 @@
 #include <jni.h>
 #include <stdlib.h>
 #include <string.h>
+#include <android/log.h>
 
 struct go_string { const char *str; long n; };
 extern int wgTurnOn(struct go_string ifname, int tun_fd, struct go_string settings);
