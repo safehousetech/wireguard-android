@@ -8,21 +8,21 @@
 
     <data>
 
-        <import type="com.wireguard.android.backend.Tunnel.State" />
+        <import type="com.safehouse.android.backend.Tunnel.State" />
 
-        <import type="com.wireguard.android.util.ClipboardUtils" />
+        <import type="com.safehouse.android.util.ClipboardUtils" />
 
         <variable
             name="fragment"
-            type="com.wireguard.android.fragment.TunnelDetailFragment" />
+            type="com.safehouse.android.fragment.TunnelDetailFragment" />
 
         <variable
             name="tunnel"
-            type="com.wireguard.android.model.ObservableTunnel" />
+            type="com.safehouse.android.model.ObservableTunnel" />
 
         <variable
             name="config"
-            type="com.wireguard.config.Config" />
+            type="com.safehouse.config.Config" />
     </data>
 
     <ScrollView
@@ -60,7 +60,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <com.wireguard.android.widget.ToggleSwitch
+                    <com.safehouse.android.widget.ToggleSwitch
                         android:id="@+id/tunnel_switch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

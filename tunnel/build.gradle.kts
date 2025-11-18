@@ -6,6 +6,8 @@ val pkg: String = providers.gradleProperty("wireguardPackageName").get()
 
 plugins {
     alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+    id("kotlin-kapt")
     `maven-publish`
     signing
 }
@@ -57,6 +59,12 @@ android {
         disable += "LongLogTag"
         disable += "NewApi"
     }
+    buildFeatures {
+        dataBinding = true
+    }
+    kotlinOptions {
+        jvmTarget = "17"
+    }
     publishing {
         singleVariant("release") {
             withJavadocJar()
@@ -68,8 +76,28 @@ android {
 dependencies {
     implementation(libs.androidx.annotation)
     implementation(libs.androidx.collection)
+    implementation(libs.core.ktx)
+    implementation(libs.androidx.databinding.runtime)
     compileOnly(libs.jsr305)
     testImplementation(libs.junit)
+
+    implementation(libs.androidx.preference.ktx)
+
+//    implementation(libs.androidx.junit.ktx)
+    implementation(libs.chucker)
+
+    implementation(libs.gson)
+
+    implementation(libs.dagger)
+    implementation(libs.dagger.android)
+    implementation(libs.dagger.android.support)
+
+    implementation(libs.squareup.okhttp.logging.interceptor)
+    implementation(libs.squareup.retrofit)
+    implementation(libs.squareup.retrofit.gson)
+
+    //datastore
+    implementation(libs.androidx.datastore.preferences)
 }
 
 publishing {

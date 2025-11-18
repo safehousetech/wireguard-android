@@ -8,11 +8,11 @@
 
     <data>
 
-        <import type="com.wireguard.android.util.ClipboardUtils" />
+        <import type="com.safehouse.android.util.ClipboardUtils" />
 
         <variable
             name="item"
-            type="com.wireguard.config.Peer" />
+            type="com.safehouse.config.Peer" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
