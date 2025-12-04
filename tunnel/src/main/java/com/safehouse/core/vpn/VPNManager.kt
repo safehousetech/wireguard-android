@@ -504,8 +504,8 @@ object VPNManager {
     fun disconnectTunnel(context: Context) {
         AsyncTask.execute {
             try {
-                removePeer(context)
                 backend.setState(wgTunnel, Tunnel.State.DOWN, null)
+                removePeer(context)
                 vpnConnectionListener.onVPNDisconnected()
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -547,8 +547,8 @@ object VPNManager {
     fun disconnectFreeTunnel(context: Context) {
         AsyncTask.execute {
             try {
-                removeFreePeer(context)
                 backend.setState(wgTunnel, Tunnel.State.DOWN, null)
+                removeFreePeer(context)
                 vpnConnectionListener.onVPNDisconnected()
             } catch (e: Exception) {
                 e.printStackTrace()

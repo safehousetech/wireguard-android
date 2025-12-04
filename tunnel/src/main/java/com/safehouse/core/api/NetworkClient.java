@@ -31,7 +31,7 @@ public class NetworkClient {
 //  public static final String ENV_DEF = "https://jio-sphere-dev.safehousetech.com/";
   public static final String ENV_DEF = "https://api-jiosphere.safehousetech.com/";
 
-  private static final boolean LOGGER_ENABLED = true;
+  private static final boolean LOGGER_ENABLED = false;
   private Context mContext;
   private Boolean moreTimeoutNeeded = false;
 
