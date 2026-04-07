@@ -12,5 +12,8 @@ data class PaymentData(
     private val phone: String?,
     @SerializedName("productId")
     @Expose
-    private val productId: String?
+    private val productId: String?,
+    @SerializedName("price")
+    @Expose
+    private val price: Int?= null
 )

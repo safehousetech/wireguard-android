@@ -722,13 +722,14 @@ object VPNManager {
         }
 
 
-    fun getPaymentLink(context: Context,email: String?,phone: String?,productId: String?) {
+    fun getPaymentLink(context: Context,email: String?,phone: String?,productId: String?,price: Int?= null) {
         val networkClient = NetworkClient(
             false,
             context,
             NetworkingInterface.InterceptorType.LOGIN_EXTERNAL
         )
-        networkClient.createService().getPaymentLink(PaymentData(email, phone, productId))
+        val finalPrice = price?.times(100)
+        networkClient.createService().getPaymentLink(PaymentData(email, phone, productId,finalPrice))
             .enqueue(object : Callback<PaymentResponse> {
                 override fun onResponse(call: Call<PaymentResponse>, response: Response<PaymentResponse>) {
 
